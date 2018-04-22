@@ -16,16 +16,8 @@ const plugins = [
 
 console.log('NODE_ENV:', env);
 
-if (env === 'production') {
-    plugins.push(
-        new webpack.optimize.UglifyJsPlugin(),
-        new OptimizeJsPlugin({
-            sourceMap: false
-        })
-    );
-}
-
 module.exports = {
+    mode: env,
     entry: [
         'react-hot-loader/patch',
         './client/index.js'
@@ -42,7 +34,7 @@ module.exports = {
                 ws: true
             }
         }
-    }
+    },
     module: {
         rules: [{
                 test: /\.js$/,
